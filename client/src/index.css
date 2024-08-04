@@ -78,3 +78,8 @@ code {
   border-width: 0.2em;
   /* Adjust border thickness if necessary */
 }
+
+.small-text {
+  font-size: 0.75rem;
+  /* Adjust size as needed */
+}
