@@ -14,18 +14,28 @@ const CoinTable = () => {
     const chartRefs = useRef({});
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async (retries = 3, delay = 1000) => {
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8001/get/api/coins`);
+                const response = await fetch('http://localhost:8001/get/api/coins');
+                if (!response.ok) {
+                    if (response.status === 429 && retries > 0) {
+                        // Retry after delay
+                        console.warn('Rate limit exceeded. Retrying...');
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        return fetchData(retries - 1, delay * 2); // Exponential backoff
+                    }
+                    throw new Error(`Error fetching data: ${response.statusText}`);
+                }
                 const data = await response.json();
                 setCoins(data.data.coins);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error(error);
             } finally {
                 setLoading(false);
             }
         };
+
 
         fetchData();
     }, []);
