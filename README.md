@@ -1,3 +1,4 @@
 ## OUTPUT
 
-![Screenshot from 2024-08-04 15-28-35](https://github.com/user-attachments/assets/6a383933-b9fa-4531-93e7-6f29e591ec39)
+
+![Screenshot from 2024-08-04 20-34-26](https://github.com/user-attachments/assets/66992aba-b2c5-4df0-9ca5-3ad43c52fa97)
