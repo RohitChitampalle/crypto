@@ -1,2 +1,3 @@
 ## OUTPUT
-![Screencast from 04-08-24 03_33_17 PM IST](https://github.com/user-attachments/assets/5a238449-6046-4116-ac19-c4574448fd86)
+
+![Screenshot from 2024-08-04 15-28-35](https://github.com/user-attachments/assets/6a383933-b9fa-4531-93e7-6f29e591ec39)
