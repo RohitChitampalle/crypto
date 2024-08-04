@@ -1,4 +1,6 @@
-## OUTPUT
+## Dashboard
+![Screenshot from 2024-08-04 21-26-45](https://github.com/user-attachments/assets/c254b676-94ab-461d-a952-c39c4de74494)
 
 
-![Screenshot from 2024-08-04 20-34-26](https://github.com/user-attachments/assets/66992aba-b2c5-4df0-9ca5-3ad43c52fa97)
+## STATUS
+![Screenshot from 2024-08-04 21-26-53](https://github.com/user-attachments/assets/8c8e425b-a4ed-497c-b2f9-2a3054ecc80e)
