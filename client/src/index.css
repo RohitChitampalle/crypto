@@ -15,3 +15,66 @@ code {
 }
 
 
+/* Add this to your CSS file */
+.table-container {
+  overflow-x: auto;
+  /* Allows horizontal scrolling */
+  overflow-y: hidden;
+  /* Hides vertical overflow, if any */
+  max-width: 100%;
+  /* Ensures the container fits within its parent */
+}
+
+.coin-table {
+  width: 1000px;
+  /* Set a fixed width for the table */
+  min-width: 1000px;
+  /* Ensure the table has a minimum width */
+}
+
+/* Optional: Style for better appearance */
+.table-container::-webkit-scrollbar {
+  height: 8px;
+  /* Height of the horizontal scrollbar */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  /* Color of the scrollbar handle */
+  border-radius: 4px;
+  /* Rounded corners for the scrollbar handle */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+  /* Darker color on hover */
+}
+
+/* Add this to your CSS file */
+.table-responsive {
+  max-width: 100%;
+}
+
+.coin-table {
+  width: 1200px;
+  /* Set a fixed width for the table */
+  min-width: 1200px;
+  /* Ensure the table has a minimum width */
+}
+
+.sparkline-canvas {
+  display: block;
+  width: 100px !important;
+  height: 30px !important;
+}
+
+
+/* Add this CSS to your component or a separate CSS file */
+.large-spinner {
+  width: 100px;
+  /* Set the desired width */
+  height: 100px;
+  /* Set the desired height */
+  border-width: 0.2em;
+  /* Adjust border thickness if necessary */
+}

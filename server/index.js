@@ -1,9 +1,9 @@
 const express = require('express');
 
 const cors = require('cors');
-const apiCoinsRoute = require('./routes/coinRoute')
+const apiCoinsRoute = require('./src/routes/coinRoute')
 const app = express();
-const PORT = 3000; // You can change the port number if needed
+const PORT = 8001; // You can change the port number if needed
 
 app.use(cors());
 
