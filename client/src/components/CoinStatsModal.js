@@ -32,9 +32,10 @@ const CoinStatsModal = () => {
         fetchStats();
     }, []);
 
-    // Helper function to format large numbers
-    const formatNumber = (num) => {
-        return new Intl.NumberFormat().format(num);
+    // Helper function to format large numbers with or without currency
+    const formatNumber = (num, withCurrency = false) => {
+        const formatted = new Intl.NumberFormat().format(num);
+        return withCurrency ? `$${formatted}` : formatted;
     };
 
     return (
@@ -63,7 +64,9 @@ const CoinStatsModal = () => {
                                                     {key.replace(/([A-Z])/g, ' $1').trim()}
                                                 </Card.Title>
                                                 <Card.Text>
-                                                    ${typeof value === 'number' ? formatNumber(value) : value}
+                                                    {key === 'totalExchanges'
+                                                        ? formatNumber(value) // No dollar sign for "Total Exchanges"
+                                                        : formatNumber(value, true)} 
                                                 </Card.Text>
                                             </Card.Body>
                                         </Card>
