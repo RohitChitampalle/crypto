@@ -105,7 +105,7 @@ const CoinTable = () => {
     console.log("Coins =>",coins)
     return (
         <div className="container mt-4">
-            <h2 className="text-center">CryptoRanker</h2>
+            <h2 className="text-center">Crypto Watcher</h2>
             {loading ? (
                 <div className="text-center my-5">
                     <Spinner animation="border" role="status" className="large-spinner">
