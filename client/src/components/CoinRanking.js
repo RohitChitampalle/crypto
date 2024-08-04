@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Table, Button, Spinner, Badge } from 'react-bootstrap';
 import { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
 import { FaSort, FaArrowUp, FaArrowDown } from 'react-icons/fa';
-
+import CoinStatsModal from './CoinStatsModal'; // Import the modal component
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
 
@@ -100,6 +100,7 @@ const CoinTable = () => {
     return (
         <div className="container mt-4">
             <h2 className="text-center">Crypto Watcher</h2>
+            <CoinStatsModal /> {/* Include the modal component */}
             {loading ? (
                 <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
                     <Spinner animation="border" variant="primary" style={{ width: '5rem', height: '5rem' }} />
@@ -133,21 +134,17 @@ const CoinTable = () => {
                             ) : (
                                 coins.map((coin, index) => (
                                     <tr key={coin.uuid} className="align-middle">
-                                        <td  className="small-text">
+                                        <td className="small-text">
                                             <img src={coin.iconUrl} alt={coin.name} width="25" height="25" className="me-2" />
-                                            {coin.name} <span className="me-2 text-secondary
-
-">{coin.symbol}</span> 
-
-                                            <Badge bg="secondary" className="me-2">Buy</Badge> 
-                                            
+                                            {coin.name} <span className="me-2 text-secondary">{coin.symbol}</span>
+                                            <Badge bg="secondary" className="me-2">Buy</Badge>
                                         </td>
                                         <td>{coin.rank}</td>
                                         <td className="small-text">${parseFloat(coin.price).toFixed(2)}</td>
                                         <td className="small-text">${parseInt(coin.marketCap).toLocaleString()}</td>
                                         <td className="small-text">{coin.btcPrice}</td>
                                         <td className="small-text">${parseFloat(coin['24hVolume']).toLocaleString()}</td>
-                                        <td className="small-text"  style={{ color: parseFloat(coin.change) >= 0 ? 'green' : 'red' }}>
+                                        <td className="small-text" style={{ color: parseFloat(coin.change) >= 0 ? 'green' : 'red' }}>
                                             {parseFloat(coin.change).toFixed(2)}%
                                             {parseFloat(coin.change) >= 0 ? <FaArrowUp /> : <FaArrowDown />}
                                         </td>
