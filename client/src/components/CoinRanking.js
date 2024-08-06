@@ -1,44 +1,19 @@
-import React, { useEffect, useState, useRef } from 'react';
+// CoinTable.js
+
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Table, Button, Spinner, Badge } from 'react-bootstrap';
 import { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
 import { FaSort, FaArrowUp, FaArrowDown } from 'react-icons/fa';
-import CoinStatsModal from './CoinStatsModal'; // Import the modal component
+import { CoinContext } from './Context/CoinContext'; // Import the context
+import CoinStatsModal from './CoinStatsModal';
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
 
 const CoinTable = () => {
-    const [coins, setCoins] = useState([]);
+    const { coins, loading, setCoins } = useContext(CoinContext); // Use the context to get coins and loading
     const [sortOrder, setSortOrder] = useState('asc');
-    const [loading, setLoading] = useState(true);
     const [sorting, setSorting] = useState(false);
     const chartRefs = useRef({});
-
-    useEffect(() => {
-        const fetchData = async (retries = 3, delay = 1000) => {
-            setLoading(true);
-            try {
-                const response = await fetch('http://localhost:8001/get/api/coins');
-                if (!response.ok) {
-                    if (response.status === 429 && retries > 0) {
-                        // Retry after delay
-                        console.warn('Rate limit exceeded. Retrying...');
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                        return fetchData(retries - 1, delay * 2); // Exponential backoff
-                    }
-                    throw new Error(`Error fetching data: ${response.statusText}`);
-                }
-                const data = await response.json();
-                setCoins(data.data.coins);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-
-        fetchData();
-    }, []);
 
     useEffect(() => {
         coins.forEach((coin, index) => {
@@ -110,14 +85,14 @@ const CoinTable = () => {
     return (
         <div className="container mt-4">
             <h2 className="text-center">Crypto Watcher</h2>
-            <CoinStatsModal /> {/* Include the modal component */}
+            <CoinStatsModal />
             {loading ? (
                 <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
                     <Spinner animation="border" variant="primary" style={{ width: '5rem', height: '5rem' }} />
                 </div>
             ) : (
                 <div style={{ overflowX: 'auto' }}>
-                    <Table striped bordered hover className="mt-3 " style={{ width: '100%' }}>
+                    <Table striped bordered hover className="mt-3" style={{ width: '100%' }}>
                         <thead>
                             <tr className="text-center">
                                 <th style={{ width: '15%' }}>Name</th>

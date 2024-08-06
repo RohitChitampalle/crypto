@@ -1,15 +1,17 @@
-// src/App.js
-import React from "react";
-import CoinRanking from "./components/CoinRanking";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css'
+// App.js
 
-function App() {
+import React from 'react';
+import CoinTable from './components/CoinRanking'; // Your CoinTable component
+import { CoinProvider } from './components/Context/CoinContext'; // Import the provider
+import CoinStatsModal from './components/CoinStatsModal'; // Your CoinStatsModal component
+
+const App = () => {
   return (
-    <div className="App">
-      <CoinRanking />
-    </div>
+    <CoinProvider>
+      <CoinTable />
+      <CoinStatsModal />
+    </CoinProvider>
   );
-}
+};
 
 export default App;
