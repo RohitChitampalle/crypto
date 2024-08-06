@@ -1,16 +1,16 @@
-
-
-import React, { useContext, useState, useEffect, useRef } from 'react';
+// CoinTable.js
+import React, { useEffect, useContext, useRef, useState } from 'react';
 import { Table, Button, Spinner, Badge } from 'react-bootstrap';
 import { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
 import { FaSort, FaArrowUp, FaArrowDown } from 'react-icons/fa';
-import { CoinContext } from './Context/CoinContext'; // Import the context
+import { CoinContext } from './Context/CoinContext';
 import CoinStatsModal from './CoinStatsModal';
+
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
 
 const CoinTable = () => {
-    const { coins, loading, setCoins } = useContext(CoinContext); // Use the context to get coins and loading
+    const { coins, setCoins } = useContext(CoinContext); // Use context here
     const [sortOrder, setSortOrder] = useState('asc');
     const [sorting, setSorting] = useState(false);
     const chartRefs = useRef({});
@@ -24,12 +24,10 @@ const CoinTable = () => {
 
             const ctx = canvas.getContext('2d');
 
-            // Destroy previous chart instance if it exists
             if (chartRefs.current[canvasId]) {
                 chartRefs.current[canvasId].destroy();
             }
 
-            // Create a new chart instance and store it in the ref
             chartRefs.current[canvasId] = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -60,13 +58,11 @@ const CoinTable = () => {
             });
         });
 
-        // Clean up chart instances on component unmount
         return () => {
             Object.values(chartRefs.current).forEach(chart => chart.destroy());
         };
     }, [coins]);
 
-    // Sort coins by price
     const sortCoinsByPrice = () => {
         setSorting(true);
         const sortedCoins = [...coins].sort((a, b) => {
@@ -86,7 +82,7 @@ const CoinTable = () => {
         <div className="container mt-4">
             <h2 className="text-center">Crypto Watcher</h2>
             <CoinStatsModal />
-            {loading ? (
+            {coins.length === 0 ? (
                 <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
                     <Spinner animation="border" variant="primary" style={{ width: '5rem', height: '5rem' }} />
                 </div>

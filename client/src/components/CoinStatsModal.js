@@ -1,4 +1,4 @@
-
+// CoinStatsModal.js
 import React, { useContext, useState } from 'react';
 import { Button, Modal, Row, Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,8 +39,8 @@ const CoinStatsModal = () => {
                                             </Card.Title>
                                             <Card.Text>
                                                 {key === 'totalMarketCap'
-                                                    ? formatNumber(value, true) 
-                                                    : formatNumber(value)}
+                                                    ? formatNumber(value, true) // Format with $ for totalMarketCap
+                                                    : formatNumber(value)} 
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>

@@ -1,19 +1,14 @@
-
-
+// Context/CoinContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
-// Create the context
 export const CoinContext = createContext();
 
-// Define the provider component
 export const CoinProvider = ({ children }) => {
     const [coins, setCoins] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({});
 
     useEffect(() => {
         const fetchData = async (retries = 3, delay = 1000) => {
-            setLoading(true);
             try {
                 const response = await fetch('http://localhost:8001/get/api/coins');
                 if (!response.ok) {
@@ -29,8 +24,6 @@ export const CoinProvider = ({ children }) => {
                 setStats(data.data.stats);
             } catch (error) {
                 console.error(error);
-            } finally {
-                setLoading(false);
             }
         };
 
@@ -38,7 +31,7 @@ export const CoinProvider = ({ children }) => {
     }, []);
 
     return (
-        <CoinContext.Provider value={{ coins, loading, stats }}>
+        <CoinContext.Provider value={{ coins, setCoins, stats }}>
             {children}
         </CoinContext.Provider>
     );
