@@ -1,4 +1,3 @@
-// CoinStatsModal.js
 
 import React, { useContext, useState } from 'react';
 import { Button, Modal, Row, Col, Card } from 'react-bootstrap';
@@ -39,9 +38,9 @@ const CoinStatsModal = () => {
                                                 {key.replace(/([A-Z])/g, ' $1').trim()}
                                             </Card.Title>
                                             <Card.Text>
-                                                {key === 'totalExchanges'
-                                                    ? formatNumber(value) // No dollar sign for "Total Exchanges"
-                                                    : formatNumber(value, true)}
+                                                {key === 'totalMarketCap'
+                                                    ? formatNumber(value, true) 
+                                                    : formatNumber(value)}
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>

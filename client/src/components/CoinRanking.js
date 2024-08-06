@@ -1,4 +1,4 @@
-// CoinTable.js
+
 
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Table, Button, Spinner, Badge } from 'react-bootstrap';

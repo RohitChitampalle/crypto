@@ -1,4 +1,4 @@
-// CoinContext.js
+
 
 import React, { createContext, useState, useEffect } from 'react';
 
